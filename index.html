@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reserva de Entradas</title>
+</head>
+<body>
+    <h1>Reserva de Entradas para la Avant Premiere</h1>
+
+    <div id="formularioReserva">
+        <label for="nombreCompleto">Nombre Completo:</label>
+        <input type="text" id="nombreCompleto">
+
+        <label for="numeroTelefono">Número de Teléfono:</label>
+        <input type="text" id="numeroTelefono">
+
+        <label for="fecha">Fecha:</label>
+        <select id="fecha">
+            <option value="Viernes 16 de Agosto">Viernes 16 de Agosto</option>
+            <option value="Sábado 17 de Agosto">Sábado 17 de Agosto</option>
+        </select>
+
+        <label for="cantidadEntradas">Cantidad de Entradas:</label>
+        <input type="number" id="cantidadEntradas" min="1" max="6">
+
+        <label for="ubicacion">Ubicación:</label>
+        <select id="ubicacion">
+            <option value="Platea Baja">Platea Baja</option>
+            <option value="Platea Alta">Platea Alta</option>
+            <option value="Palcos">Palcos</option>
+        </select>
+
+        <button id="reservarButton">Reservar</button>
+    </div>
+
+    <div id="buscarReserva">
+        <h2>Buscar Reserva</h2>
+        <label for="busqueda">Nombre Completo o Teléfono:</label>
+        <input type="text" id="busqueda">
+        <button id="buscarButton">Buscar</button>
+    </div>
+
+    <div id="resultadoReserva"></div>
+
+    <script src="reservas.js"></script>
+</body>
+</html>
+
