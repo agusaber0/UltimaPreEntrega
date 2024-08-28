@@ -1,3 +1,19 @@
+
+
+async function enviarReservaAPI(reserva) {
+    try {
+        let response = await fetch('json/emulador.json');
+        if (response.ok) {
+            let data = await response.json();
+            mostrarMensaje('Reserva enviada de forma exitosa: ' + data.message);
+        } 
+    } catch (error) {
+        mostrarMensaje('Error al intentar enviar la reserva: ' + error.message);
+    }
+}
+
+cargarReservas();
+
 let reservas = JSON.parse(localStorage.getItem('reservas')) || [];
 
 document.getElementById('reservarButton').addEventListener('click', function() {
@@ -9,12 +25,22 @@ document.getElementById('reservarButton').addEventListener('click', function() {
     reserva.cantidadEntradas = parseInt(document.getElementById('cantidadEntradas').value);
     reserva.ubicacion = document.getElementById('ubicacion').value;
 
+
+    let fechaReserva = DateTime.fromISO(reserva.fecha);
+    let hoy = DateTime.now();
+    
+    if (fechaReserva < hoy) {
+        mostrarMensaje('No puedes hacer una reserva para una fecha pasada.');
+        return;
+    }
+
     if (validarCantidadEntradas(reserva.ubicacion, reserva.cantidadEntradas)) {
         if (confirmarReserva(reserva)) {
             reservas.push(reserva);
             localStorage.setItem('reservas', JSON.stringify(reservas));
             document.getElementById('formularioReserva').reset();
             mostrarMensaje('Reserva realizada con éxito. ¡Gracias por reservar!');
+            enviarReservaAPI(reserva);
         }
     }
 });
@@ -65,4 +91,17 @@ function mostrarReserva(reserva) {
 
 function mostrarMensaje(mensaje) {
     document.getElementById('resultadoReserva').innerText = mensaje;
+}
+
+
+function calcularDiasParaReserva(fechaReserva) {
+    let fecha = DateTime.fromISO(fechaReserva);
+    let hoy = DateTime.now();
+    let diferencia = fecha.diff(hoy, 'days').toObject();
+    return Math.ceil(diferencia.days); 
+}
+
+let diasParaReserva = calcularDiasParaReserva(reserva.fecha);
+if (diasParaReserva <= 3) {
+    mostrarMensaje('Tu reserva es en menos de 3 días.');
 }

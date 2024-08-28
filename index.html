@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reserva de Entradas</title>
+    <title>Reserva tus Entradas</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/luxon@3.0.1/build/global/luxon.min.js"></script>
 </head>
 <body>
-    <h1>Reserva de Entradas para la Avant Premiere</h1>
+    <h1>Reserva de Entradas para la Avant Premiere de "El Padrino IV"</h1>
 
     <div id="formularioReserva">
         <label for="nombreCompleto">Nombre Completo:</label>
@@ -17,8 +19,8 @@
 
         <label for="fecha">Fecha:</label>
         <select id="fecha">
-            <option value="Viernes 16 de Agosto">Viernes 16 de Agosto</option>
-            <option value="Sábado 17 de Agosto">Sábado 17 de Agosto</option>
+            <option value="2024-08-30">Viernes 30 de Agosto</option>
+            <option value="2024-08-31">Sábado 31 de Agosto</option>
         </select>
 
         <label for="cantidadEntradas">Cantidad de Entradas:</label>
@@ -43,7 +45,7 @@
 
     <div id="resultadoReserva"></div>
 
-    <script src="reservas.js"></script>
+    <script src="js/reservas.js"></script>
 </body>
 </html>
 
